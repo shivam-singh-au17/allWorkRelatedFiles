@@ -1,0 +1,171 @@
+paths:
+  /serviceTransactionNew:
+    post:
+      tags:
+        - Service_Transaction_New
+      summary: Create a new Service_Transaction_New
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service_Transaction_New'
+      responses:
+        200:
+          description: OK
+
+  /serviceTransactionNews:
+    get:
+      tags:
+        - Service_Transaction_New
+      summary: Get all Service_Transaction_New
+      responses:
+        200:
+          description: Array of Service_Transaction_New
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Service_Transaction_New"
+
+  /serviceTransactionNew/{:id}:
+    get:
+      tags:
+        - Service_Transaction_New
+      summary: Get Service_Transaction_New by ID
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record you want
+          application/json:
+            schema:
+              type: array
+
+    delete:
+      tags:
+        - Service_Transaction_New
+      summary: Delete Service_Transaction_New
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record Deleted
+          application/json:
+            schema:
+              type: array
+
+    patch:
+      tags:
+        - Service_Transaction_New
+      summary: Update Service_Transaction_New
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Service_Transaction_New"
+      responses:
+      200:
+        description: OK
+
+
+
+components:
+  schemas:
+    Service_Transaction_New:
+      type: object
+      required:
+        - serviceMasterId
+        - briefDiscussion
+        - financialYearId
+        - customerId
+        - typeNew
+        - typeApproved
+        - typeReject
+        - documents
+        - allMilestoneData
+        - serviceAmount
+        - paymentAmount
+        - isCustomized
+        - assignedTo
+        - assignedToComments
+        - serviceStatus
+      properties:
+        serviceMasterId:
+          type: string
+        briefDiscussion:
+          type: string
+        financialYearId:
+          type: string
+        customerId:
+          type: string
+        typeNew:
+          type: boolean
+        typeApproved:
+          type: boolean
+        typeReject:
+          type: boolean
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              documentName:
+                type: string
+              path:
+                type: string
+        serviceAmount:
+          type: number
+        paymentAmount:
+          type: number
+        isCustomized:
+          type: boolean
+        assignedTo:
+          type: string
+        assignedToComments:
+          type: string
+        serviceStatus:
+          type: boolean
+
+
+
+        serviceMasterId:
+        briefDiscussion:
+        financialYearId:
+        customerId:
+        typeNew:
+        typeApproved:
+        typeReject:
+        documents:
+        allMilestoneData:
+        serviceAmount:
+        paymentAmount:
+        isCustomized:
+        assignedTo:
+        assignedToComments:
+        serviceStatus:
+
+
+
+        serviceMasterId: Joi.string().required(),
+        briefDiscussion: Joi.string().required(),
+        financialYearId: Joi.string().required(),
+        customerId: Joi.string().required(),
+        typeNew: Joi.boolean().required(),
+        typeApproved: Joi.boolean().required(),
+        typeReject: Joi.boolean().required(),
+        documents: Joi.array().required(),
+        allMilestoneData: Joi.array().required(),
+        serviceAmount: Joi.number().required(),
+        paymentAmount: Joi.number().required(),
+        isCustomized: Joi.boolean().required(),
+        assignedTo: Joi.string().required(),
+        assignedToComments: Joi.string().required(),
+        serviceStatus: Joi.boolean().required(),
