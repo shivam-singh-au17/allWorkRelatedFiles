@@ -1,0 +1,790 @@
+openapi: 3.0.0
+info:
+    title: iTax Backend API
+    description: API for iTax Backend
+    version: 1.0.0
+
+servers:
+  - url: "http://localhost:3000/"
+  - url: "https://dev.itax.ariantechsolutions.in/api/"
+
+
+
+tags:
+    - name: Options
+      description: Endpoints related to Options
+    - name: CaseLaw
+      description: Endpoints related to CaseLaw
+    - name: MilestoneMaster
+      description: Endpoints related to MilestoneMaster
+    - name: ServiceCategory
+      description: Endpoints related to ServiceCategory
+    - name: ServiceMaster
+      description: Endpoints related to ServiceMaster
+
+paths:
+  /option:
+    post:
+      tags:
+        - Options
+      summary: Create a new option
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Option'
+      responses:
+        200:
+          description: OK
+  /options:
+    get:
+      tags:
+        - Options
+      summary: Get all options
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Skip number of record you want from top
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Limit number of record you want
+      responses:
+        200:
+          description: Array of Options
+          application/json:
+            schema:
+              type: array
+              items:
+                  $ref: '#/components/schemas/Option'
+  /option/{:id}:
+    get:
+      tags:
+        - Options
+      summary: Get Option by ID
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record you want
+          application/json:
+              schema:
+                type: array
+
+    delete:
+      tags:
+        - Options
+      summary: Delete Option
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record Deleted
+          application/json:
+              schema:
+                type: array
+
+    patch:
+      tags:
+        - Options
+      summary: Update Option
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Option'
+      responses:
+      200:
+        description: OK
+
+  /caselaw:
+    post:
+      tags:
+        - CaseLaw
+      summary: Create a new Caselaw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Caselaw'
+      responses:
+        200:
+          description: OK
+
+  /upload/caselaw/decisionFile/{:filetype}:
+    post:
+      tags:
+        - CaseLaw
+      summary: Upload File
+      parameters:
+        - in: path
+          name: ":filetype"
+          required: true
+      responses:
+        200:
+          description: File Uploaded
+
+  /caselaws:
+    get:
+      tags:
+        - CaseLaw
+      summary: Get all Caselaw
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Skip number of record you want from top
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Limit number of record you want
+        - in: query
+          name: act
+          schema:
+            type: string
+          description: Find by Act
+        - in: query
+          name: section
+          schema:
+            type: string
+          description: Find by Section
+        - in: query
+          name: dateOfOrder
+          schema:
+            type: string
+          description: Find by DateOfOrder
+        - in: query
+          name: caseName
+          schema:
+            type: string
+          description: Find by CaseName
+        - in: query
+          name: courtName
+          schema:
+            type: string
+          description: Find by CourtName
+        - in: query
+          name: judgeName
+          schema:
+            type: string
+          description: Find by JudgeName
+        - in: query
+          name: citation
+          schema:
+            type: string
+          description: Find by Citation
+        - in: query
+          name: inFavourOf
+          schema:
+            type: string
+          description: Find by InFavourOf
+      responses:
+        200:
+          description: Array of Caselaw
+          application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Caselaw'
+
+  /caselaw/{:id}:
+    get:
+      tags:
+        - CaseLaw
+      summary: Get Caselaw ID
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record you want
+          application/json:
+              schema:
+                type: array
+
+    delete:
+      tags:
+        - CaseLaw
+      summary: Delete CaseLaw
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record Deleted
+          application/json:
+              schema:
+                type: array
+
+    patch:
+      tags:
+        - CaseLaw
+      summary: Update CaseLaw
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Caselaw'
+      responses:
+      200:
+        description: OK
+
+  /milestoneMaster:
+    post:
+      tags:
+        - MilestoneMaster
+      summary: Create a new MilestoneMaster
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MilestoneMaster'
+      responses:
+        200:
+          description: OK
+  /milestoneMasters:
+    get:
+      tags:
+        - MilestoneMaster
+      summary: Get all MilestoneMaster
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Skip number of record you want from top
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Limit number of record you want
+      responses:
+        200:
+          description: Array of Options
+          application/json:
+            schema:
+              type: array
+              items:
+                  $ref: '#/components/schemas/MilestoneMaster'
+  /milestoneMaster/{:id}:
+    get:
+      tags:
+        - MilestoneMaster
+      summary: Get MilestoneMaster by ID
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record you want
+          application/json:
+              schema:
+                type: array
+
+    delete:
+      tags:
+        - MilestoneMaster
+      summary: Delete MilestoneMaster
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record Deleted
+          application/json:
+              schema:
+                type: array
+
+    patch:
+      tags:
+        - MilestoneMaster
+      summary: Update MilestoneMaster
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MilestoneMaster'
+      responses:
+      200:
+        description: OK
+
+  /serviceCategory:
+    post:
+      tags:
+        - ServiceCategory
+      summary: Create a new ServiceCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCategory'
+      responses:
+        200:
+          description: OK
+
+  /upload/serviceCategory/banner/{:filetype}:
+    post:
+      tags:
+        - ServiceCategory
+      summary: Upload File
+      parameters:
+        - in: path
+          name: ":filetype"
+          required: true
+      responses:
+        200:
+          description: File Uploaded
+
+  /serviceCategories:
+    get:
+      tags:
+        - ServiceCategory
+      summary: Get all ServiceCategory
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Skip number of record you want from top
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Limit number of record you want
+      responses:
+        200:
+          description: Array of ServiceCategory
+          application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceCategory'
+
+  /serviceCategory/{:id}:
+    get:
+      tags:
+        - ServiceCategory
+      summary: Get ServiceCategory ID
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record you want
+          application/json:
+              schema:
+                type: array
+
+    delete:
+      tags:
+        - ServiceCategory
+      summary: Delete ServiceCategory
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record Deleted
+          application/json:
+              schema:
+                type: array
+
+    patch:
+      tags:
+        - ServiceCategory
+      summary: Update ServiceCategory
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCategory'
+      responses:
+      200:
+        description: OK
+
+  /service:
+    post:
+      tags:
+        - ServiceMaster
+      summary: Create a new ServiceMaster
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceMaster'
+      responses:
+        200:
+          description: OK
+          
+  /services:
+    get:
+      tags:
+        - ServiceMaster
+      summary: Get all ServiceMaster
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Skip number of record you want from top
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Limit number of record you want
+      responses:
+        200:
+          description: Array of ServiceMaster
+          application/json:
+            schema:
+              type: array
+              items:
+                  $ref: '#/components/schemas/ServiceMaster'
+
+  /service/{:id}:
+    get:
+      tags:
+        - ServiceMaster
+      summary: Get ServiceMaster by ID
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record you want
+          application/json:
+              schema:
+                type: array
+
+    delete:
+      tags:
+        - ServiceMaster
+      summary: Delete ServiceMaster
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      responses:
+        200:
+          description: Record Deleted
+          application/json:
+              schema:
+                type: array
+
+    patch:
+      tags:
+        - ServiceMaster
+      summary: Update ServiceMaster
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceMaster'
+      responses:
+      200:
+        description: OK
+
+  /service/{:id}/milestones:
+    post:
+      tags:
+        - ServiceMaster
+      summary: Update Milestones
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestones'
+      responses:
+        200:
+          description: OK
+
+  /service/{:id}/documents:
+    post:
+      tags:
+        - ServiceMaster
+      summary: Update Documents
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'    
+      responses:
+        200:
+          description: OK
+
+  /service/{:id}/relatedServices:
+    post:
+      tags:
+        - ServiceMaster
+      summary: Update RelatedServices
+      parameters:
+        - in: path
+          name: :id
+          required: true
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelatedServices'
+      responses:
+        200:
+          description: OK
+
+
+components:
+  schemas:
+    Option:
+      type: object
+      required:
+        - option
+        - label
+        - value
+        - enabled
+        - default
+      properties:
+        option:
+          type: string
+        label:
+          type: string
+        value:
+          type: string
+        enabled:
+          type: boolean
+        default:
+          type: boolean
+    Caselaw:
+      type: object
+      required:
+        - act
+        - caseNumber
+        - section
+        - dateOfOrder
+        - caseName
+        - sub_caseName
+        - inFavourOf
+        - keyword
+        - courtName
+        - headNote
+        - decisionJudgement
+        - status
+        - judgeName
+        - appearedForPetitioner
+        - appearedForRespondent
+      properties:
+        act:
+          type: string
+        caseNumber:
+          type: string
+        section:
+          type: string
+        dateOfOrder:
+          type: string
+        sub_caseName:
+          type: string
+        caseName:
+          type: string
+        inFavourOf:
+          type: string
+        appealFilingDate:
+          type: string
+        keyword:
+          type: string
+        courtName:
+          type: string
+        headNote:
+          type: string
+        decisionJudgement:
+          type: string
+        status:
+          type: boolean
+        uploadDecisionFile:
+          type: string
+        otherCitation:
+          type: string
+        judgeName:
+          type: string
+        appearedForPetitioner:
+          type: string
+        appearedForRespondent:
+          type: string
+
+    MilestoneMaster:
+      type: object
+      required:
+        - milestoneName
+        - milestoneFrequency
+        - billable
+        - filing
+        - status
+      properties:
+        milestoneName:
+          type: string
+        milestoneFrequency:
+          type: string
+        billable:
+          type: boolean
+        filing:
+          type: boolean
+        status:
+          type: boolean
+
+    ServiceCategory:
+      type: object
+      required:
+        - serviceCategory
+        - description
+        - showonHomePage
+        - status
+      properties:
+        serviceCategory:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        showonHomePage:
+          type: boolean
+        status:
+          type: boolean
+
+    ServiceMaster:
+      type: object
+      required:
+        - serviceCategory
+        - serviceModel
+        - serviceName
+        - description
+        - customerServiceFee
+        - fullPaymentDiscount
+        - businessPartnerFee
+        - gstApplicable
+        - tdsApplicable
+      properties:
+        serviceCategory:
+          type: string
+        serviceModel:
+          type: string
+        serviceName:
+          type: string
+        description:
+          type: string
+        customerServiceFee:
+          type: number
+        fullPaymentDiscount:
+          type: number
+        businessPartnerFee:
+          type: number
+        gstApplicable:
+          type: boolean
+        tdsApplicable:
+          type: boolean
+        showOnHomePage:
+          type: boolean
+        status:
+          type: boolean
+
+    Milestones:
+      type: object
+      required:
+        - milestones
+      properties:
+        milestones:
+          type: array
+          items:
+            type: object
+            required:
+              - milestone
+              - period
+              - groupHead
+              - paymentMilestoneStatus
+              - milestoneFees
+              - paymentPercentage
+              - amount
+            properties:
+              milestone:
+                type: string
+              period:
+                type: string
+              groupHead:
+                type: boolean
+              paymentMilestoneStatus:
+                type: boolean
+              milestoneFees:
+                type: number
+              paymentPercentage:
+                type: number
+              amount:
+                type: number
+    Documents:
+      type: object
+      required:
+        - documents
+      properties:
+        documents:
+          type: array
+          items:
+            type: object
+            required:
+              - document
+              - mandatory
+            properties:
+              document:
+                type: string
+              mandatory:
+                type: boolean
+              showOnHomePage:
+                type: boolean
+
+    RelatedServices:
+      type: object
+      required:
+        - relatedServices
+      properties:
+        relatedServices:
+          type: array
+          items:
+            type: string
